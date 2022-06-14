@@ -41,39 +41,95 @@ FIGURE-04
 A Parallel in Parallel out (PIPO) shift register is used as a temporary storage device and like SISO Shift register it acts as a delay element.
 
 ### Procedure
-/* write all the steps invloved */
+1.Use quartus software and import required modules.
+
+2.Assign inputs and outputs for shift registers.
+
+3.Assign logic for input to give output at positive edge.
+
+4.Perform opertaions and produce rtl circuit.
+
+5.end module
 
 
-
-### PROGRAM 
-/*
+### PROGRAM 1
+~~~
 Program for  Implementation-of Shift-registers-using-verilog-
-Developed by: 
-RegisterNumber:  
-*/
+Developed by:M.Shyam Naveen Raj
+RegisterNumber: 212221230099  
+~~~
+~~~
+module sipo(c,si,po);
+input c,si;
+output [7:0] po;
+reg [7:0] temp;
 
+always @ (posedge c)
+begin
+temp = {temp[6:0],si};
+end
+assign po = temp;
+endmodule 
+~~~
 
-
-
-
-
-### RTL LOGIC  REGISTERS   
-
-
-
-
-
-
-
+### RTL LOGIC  REGISTERS 
+![](fg1.png)  
 
 
 ### TIMING DIGRAMS FOR SHIFT REGISTERS
+![](fg2.jpeg)
+### PROGRAM 2
+Program for  Implementation-of Shift-registers-using-verilog-
+
+~~~
+module piro(c,pi,so,load);
+input [3:0] pi;
+input load,c;
+output reg so;
+reg [3:0] temp;
+always @ (posedge c)
+begin 
+if(load)
+temp <= pi;
+else
+begin
+so<=temp[3];
+temp <={temp[2:0],1'b0};
+end
+end
+endmodule
+~~~
+### RTL LOGIC  REGISTERS 
+![](fg3.png)  
 
 
+### TIMING DIGRAMS FOR SHIFT REGISTERS
+![](fg4.jpeg)
 
+### PROGRAM 3:
+Program for  Implementation-of Shift-registers-using-verilog-
+
+~~~
+module sipo(pi,po,clk);
+input clk;
+input [3:0] pi;
+output reg [3:0] po;
+always @ (posedge clk)
+begin 
+po=pi;
+end
+endmodule 
+~~~
+### RTL LOGIC  REGISTERS 
+![](fg5.png)  
+
+
+### TIMING DIGRAMS FOR SHIFT REGISTERS
+![](fg6.jpeg)
 
 
 
 
 
 ### RESULTS 
+THUS THE PROGRAM TO IMPLEMENT SHIFT REGISTERS IS DONE SUCCESSFUL.
